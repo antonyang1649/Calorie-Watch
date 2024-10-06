@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+
+
+<html lang="en">
+
+    <!--Title card-->
+<head>
+    <meta charset="UTF-8">
+    <title>Calorie Calculator Result</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='CalorieCalcColor.css') }}">
+</head>
+<body>
+
+    
+    <!--requesting and displaying results of calculations-->
+    <div class="container">
+        <h1>Calorie Calculator Result</h1>
+        <p>Your ideal calorie intake is:</p>
+        <h2>{{ calorie_intake }} kcal/day</h2>
+        <a href="/" class="button">Home</a>
+    </div>
+
+    
+</body>
+</html>

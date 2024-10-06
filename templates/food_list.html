@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+
+
+<html lang="en">
+
+    <!--Title-->
+<head>
+    <meta charset="UTF-8">
+    <title>Food Calorie List</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='FoodListColor.css') }}">
+</head>
+
+    
+    <body>
+        <div class="container">
+            <div class="header">
+                <h1>Food Calorie List</h1>
+                <a href="/" class="home-button">Home</a>
+            </div>
+
+            
+            <!--Search bar-->
+            <input type="text" id="searchInput" placeholder="Search for food...">
+
+            <table class="food-table">
+                <thead>
+                    <tr>
+                        
+                        <!--Column titles-->
+                        <th>Food</th>
+                        <th>Calories (per item/serving depending on item)</th>
+                        
+                    </tr>
+                </thead>
+                <tbody id="foodTableBody">
+                    {% for food in foods %}
+                    <tr>
+                        
+                        <!--Food/Calorie listings-->
+                        <td>{{ food.name }}</td>
+                        <td>{{ food.calories }}</td>
+                        
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        
+        <!--filtering-->
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const searchInput = document.getElementById('searchInput');
+                const foodTableBody = document.getElementById('foodTableBody');
+
+                searchInput.addEventListener('input', function() {
+                    const searchValue = searchInput.value.toLowerCase();
+                    const rows = foodTableBody.getElementsByTagName('tr');
+
+                    Array.from(rows).forEach(function(row) {
+                        const foodName = row.getElementsByTagName('td')[0].textContent.toLowerCase();
+                        if (foodName.includes(searchValue)) {
+                            row.style.display = '';
+                        } else {
+                            row.style.display = 'none';
+                        }
+                    });
+                });
+            });
+        </script>
+    </body>
+    </html>
